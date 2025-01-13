@@ -439,7 +439,7 @@ pub mod easy_gnome {
                         );
 
                     // Pix buf are cuadruplets of u8 (rgba)
-                    let bytes: Vec<u8> = pixbuf.unwrap().read_pixel_bytes().unwrap().to_vec();
+                    let bytes: Vec<u8> = pixbuf.unwrap().read_pixel_bytes().to_vec();
 
                     // Using image library build a png based on cuadruplets (rgba)
                     let png: image::ImageBuffer<image::Rgba<u8>, Vec<u8>> =

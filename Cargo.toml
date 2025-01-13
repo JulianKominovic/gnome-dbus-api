@@ -1,6 +1,6 @@
 [package]
 name = "gnome-dbus-api"
-version = "1.1.0"
+version = "1.1.1"
 authors = ["Julian Kominovic"]
 license = "MIT"
 description = "A simple API to interact with GNOME DBus and Gsettings"
@@ -18,9 +18,9 @@ categories = ["api-bindings"]
 tokio = { version = "1.0", features = ["full", "macros"] }
 base64 = "^0.21.4"
 futures-util = "0.3.31"
-gdk = "^0.15.0"
-gio = "^0.15.0"
-gtk = "^0.15.0"
+gdk = "^0.18.0"
+gio = "^0.18.0"
+gtk = "^0.18.0"
 image = "^0.24.7"
 upower_dbus = "0.3.2"
 zbus = "^3.14.1"
