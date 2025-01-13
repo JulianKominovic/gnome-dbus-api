@@ -76,6 +76,11 @@ async fn set_brightness(value: i32) -> Result<(), String> {
     screen::set_brightness(value).await;
     Ok(())
 }
+async fn listen_brightness() -> Result<(), String> {
+   screen::on_brightness_changed(|brightness| {
+            println!("Brightness changed to: {}", brightness);
+        }).await;
+}
 ```
 
 ### Night light
