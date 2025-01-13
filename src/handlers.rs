@@ -249,7 +249,8 @@ pub mod easy_gnome {
     }
 
     pub mod screen {
-        use zbus::Connection;
+        use futures_util::StreamExt;
+        use zbus::{Connection, Proxy};
 
         use crate::handlers::easy_gnome::ScreenProxy;
 
@@ -272,6 +273,21 @@ pub mod easy_gnome {
             let connection = Connection::session().await.unwrap();
             let proxy = ScreenProxy::new(&connection).await.unwrap();
             proxy.StepDown().await.unwrap();
+        }
+        pub async fn on_brightness_changed<F: Fn(i32) + 'static>(callback: F) {
+            let connection = Connection::session().await.unwrap();
+            let proxy = ScreenProxy::new(&connection).await.unwrap();
+            let mut stream = proxy.receive_Brightness_changed().await;
+            while let Some(changed) = stream.next().await {
+                match changed.get().await {
+                    Ok(new_brightness) => {
+                        callback(new_brightness);
+                    }
+                    Err(e) => {
+                        eprintln!("Error getting brightness value: {}", e);
+                    }
+                }
+            }
         }
     }
 

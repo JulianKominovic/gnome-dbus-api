@@ -14,10 +14,11 @@ categories = ["api-bindings"]
 
 
 [dev-dependencies]
-tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 
 [dependencies]
+tokio = { version = "1.0", features = ["full", "macros"] }
 base64 = "^0.21.4"
+futures-util = "0.3.31"
 gdk = "^0.15.0"
 gio = "^0.15.0"
 gtk = "^0.15.0"
